@@ -1,0 +1,6 @@
+@Damascus_HostAddress = http://localhost:5198
+
+GET {{Damascus_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
