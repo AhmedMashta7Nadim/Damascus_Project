@@ -9,6 +9,6 @@ namespace InfraStractur.Repository.RepositoryDeleted
 {
     public interface IRepositorySoftDeleted
     {
-        Task<string> SoftDeletedAsync(Guid Id);
+        Task<string> SoftDeletedAsync(Guid Id);//
     }
 }
