@@ -3,6 +3,7 @@ using AutoMapper;
 using InfraStractur.RepositoryModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Model_Entity.DTO;
 using Model_Entity.Models;
@@ -53,6 +54,18 @@ namespace Damascus.Controllers
             var getAll=await repository.GetAllAsync();
             return Ok(getAll);
         }
+
+        [HttpGet("GetUserAsync")]
+        public async Task<ActionResult<object>> GetUserAsync(Guid id)
+        {
+            var get = await repository.GetAsync(id,true,x=>x.Include(c=>c.courses));
+            if (get is null)
+            {
+                return NotFound();
+            }
+            return Ok(get);
+        }
+
         [HttpDelete("Deleted_User")]
         public async Task<ActionResult<string>> DeletedUserAsync(Guid Id)
         {

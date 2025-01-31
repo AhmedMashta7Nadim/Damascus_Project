@@ -13,5 +13,6 @@ namespace InfraStractur.Repository
     {
         Task<List<V>> GetAllAsync();
         Task<T>Add(T item);
+        Task<object> GetAsync(Guid id,bool isinclude=false,Func<IQueryable<T>,IQueryable<T>> include=null);
     }
 }

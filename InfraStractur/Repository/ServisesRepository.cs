@@ -60,6 +60,23 @@ namespace InfraStractur.Repository
             return new List<V>();
         }
 
+        public async Task<object> GetAsync(Guid id, bool isinclude = false, Func<IQueryable<T>, IQueryable<T>> include = null)
+        {
+            IQueryable<T> querey =  context.Set<T>();
+
+          
+            if(isinclude && include != null)
+            {
+                querey = include(querey);
+            }
+            var get = await querey.FirstOrDefaultAsync(x => x.Id == id);
+            if (get == null)
+            {
+                return null;
+            }
+            return get;
+        }
+
         public async Task<string> SoftDeletedAsync(Guid Id)
         {
             var x=await context.Set<T>().FirstOrDefaultAsync(x=>x.Id==Id);

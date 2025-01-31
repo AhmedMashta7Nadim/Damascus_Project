@@ -1,6 +1,8 @@
 
 using InfraStractur.Data;
 using InfraStractur.RigestarServisess;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Damascus
 {
@@ -12,7 +14,11 @@ namespace Damascus
 
             // Add services to the container.
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
 
 
 

@@ -22,6 +22,7 @@ namespace InfraStractur.Data
                 .HasIndex(u => u.Email)
                 .IsUnique();
 
+           
 
             modelBuilder.Entity<User>()
                 .HasMany(x => x.courses)
